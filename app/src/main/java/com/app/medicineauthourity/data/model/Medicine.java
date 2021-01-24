@@ -1,9 +1,11 @@
 package com.app.medicineauthourity.data.model;
 
+import com.app.medicineauthourity.R;
+
 public class Medicine {
 
     public enum Composition {
-        Simple, Complex
+        Simple , Complex;
     }
 
     public enum Usage {
@@ -11,7 +13,7 @@ public class Medicine {
     }
 
     public enum Physiological {
-        External, Internal
+        Special, General, Prolonged
     }
 
     public enum Production {
@@ -21,12 +23,22 @@ public class Medicine {
     private String id;
     private String name;
     private String barQRCode;
-    private String categoryId;
+    private String categoryName;
     private String composition;
     private String usage;
     private String physiological;
     private String production;
     private boolean approved;
+
+    public Medicine(String name, String barQRCode, String categoryName, String composition, String usage, String physiological, String production) {
+        this.name = name;
+        this.barQRCode = barQRCode;
+        this.categoryName = categoryName;
+        this.composition = composition;
+        this.usage = usage;
+        this.physiological = physiological;
+        this.production = production;
+    }
 
     public String getId() {
         return id;
@@ -52,12 +64,12 @@ public class Medicine {
         this.barQRCode = barQRCode;
     }
 
-    public String getCategoryId() {
-        return categoryId;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public String getComposition() {

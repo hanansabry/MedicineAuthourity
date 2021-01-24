@@ -5,6 +5,8 @@ import com.app.medicineauthourity.data.model.Medicine;
 
 import java.util.List;
 
+import androidx.lifecycle.MutableLiveData;
+
 public class RetrieveMedicinesUseCase {
 
     private MedicineRepository medicineRepository;
@@ -13,15 +15,15 @@ public class RetrieveMedicinesUseCase {
         this.medicineRepository = medicineRepository;
     }
 
-    public List<Medicine> execute() {
-        return medicineRepository.retrieveMedicines();
+    public void execute() {
+        medicineRepository.retrieveMedicines();
     }
 
-    public List<Medicine> executeByCategory(String categoryId) {
-        return medicineRepository.retrieveMedicinesByCategory(categoryId);
+    public void executeByCategory(String categoryId) {
+        medicineRepository.retrieveMedicinesByCategory(categoryId);
     }
 
-    public List<Medicine> executeByProduction(String productionType) {
-        return medicineRepository.retrieveMedicinesByProduction(productionType);
+    public void executeByProduction(String productionType, MutableLiveData<List<Medicine>> medicines) {
+        medicineRepository.retrieveMedicinesByProduction(productionType, medicines);
     }
 }

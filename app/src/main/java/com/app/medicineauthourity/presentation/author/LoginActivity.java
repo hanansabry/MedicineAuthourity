@@ -8,6 +8,7 @@ import butterknife.OnClick;
 import butterknife.OnTextChanged;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -15,6 +16,7 @@ import com.app.medicineauthourity.Injection;
 import com.app.medicineauthourity.R;
 import com.app.medicineauthourity.domain.author.usecases.LoginUseCase;
 import com.app.medicineauthourity.presentation.BarcodeScanningActivity;
+import com.app.medicineauthourity.presentation.StartActivity;
 import com.app.medicineauthourity.presentation.viewmodels.LoginViewModel;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -33,6 +35,9 @@ public class LoginActivity extends AppCompatActivity {
     TextInputEditText editTextPassword;
 
     private LoginViewModel loginViewModel;
+    private SharedPreferences sharedPref;
+
+    public static final String LOGGED_PREF = "logged_pref";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
+        sharedPref = Injection.getSharedPreferences(this);
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
         loginViewModel.getUsernameError().observe(this, error -> {
             textInputMail.setError(error);
@@ -49,7 +55,8 @@ public class LoginActivity extends AppCompatActivity {
         });
         loginViewModel.isLoginSucceeded().observe(this, isSuccess -> {
             if (isSuccess) {
-                startActivity(new Intent(LoginActivity.this, BarcodeScanningActivity.class));
+                storeLoginStatus();
+                startActivity(new Intent(LoginActivity.this, AuthorControlActivity.class));
             } else {
                 Toast.makeText(LoginActivity.this, "Incorrect username or password", Toast.LENGTH_SHORT).show();
             }
@@ -81,5 +88,11 @@ public class LoginActivity extends AppCompatActivity {
     @OnClick(R.id.btnBack)
     public void onBackClicked() {
         onBackPressed();
+    }
+
+    private void storeLoginStatus() {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean(LOGGED_PREF, true);
+        editor.apply();
     }
 }

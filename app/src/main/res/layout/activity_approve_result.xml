@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".presentation.author.ApproveResultActivity">
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="50dp"
+        android:background="@null"
+        android:src="@drawable/ic_back_white"
+        android:tint="@color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/medNameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:text="Medicine Name"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/approvedIcon"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/approved"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/rejectedIcon"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/rejected"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/approveResultTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32sp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:fontFamily="serif-monospace"
+            android:gravity="center"
+            android:text="Approved by authority of health"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+</RelativeLayout>

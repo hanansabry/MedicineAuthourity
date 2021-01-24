@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppWithTransparentStatusBar">
-        <activity android:name=".presentation.author.RegisterActivity"/>
+        <activity android:name=".presentation.author.ApproveResultActivity"></activity>
+        <activity android:name=".presentation.author.ApprovalActivity" />
+        <activity android:name=".presentation.author.AddMedicineActivity" />
+        <activity android:name=".presentation.author.AddCategoryActivity" />
+        <activity android:name=".presentation.author.AuthorControlActivity" />
+        <activity android:name=".presentation.author.RegisterActivity" />
         <activity android:name=".presentation.author.LoginActivity" />
         <activity android:name=".presentation.StartActivity" />
         <activity android:name=".presentation.BarcodeScanningActivity" />
@@ -23,16 +28,14 @@
             </intent-filter>
         </activity>
     </application>
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

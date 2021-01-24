@@ -73,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
         registerViewModel.isRegisterSucceeded().observe(this, isSuccess -> {
             if (isSuccess) {
-                startActivity(new Intent(RegisterActivity.this, BarcodeScanningActivity.class));
+                startActivity(new Intent(RegisterActivity.this, AuthorControlActivity.class));
             } else {
                 Toast.makeText(RegisterActivity.this, "Can't create account, please try again later", Toast.LENGTH_SHORT).show();
             }

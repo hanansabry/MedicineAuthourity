@@ -5,6 +5,8 @@ import com.app.medicineauthourity.data.model.Category;
 
 import java.util.List;
 
+import androidx.lifecycle.MutableLiveData;
+
 public class RetrieveCategoriesUseCase {
 
     private CategoryRepository categoryRepository;
@@ -13,7 +15,7 @@ public class RetrieveCategoriesUseCase {
         this.categoryRepository = categoryRepository;
     }
 
-    public List<Category> execute() {
-        return categoryRepository.retrieveCategories();
+    public void execute(MutableLiveData<List<Category>> categories) {
+        categoryRepository.retrieveCategories(categories);
     }
 }

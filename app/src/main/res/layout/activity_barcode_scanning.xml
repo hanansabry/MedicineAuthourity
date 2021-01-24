@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
     <SurfaceView
         android:id="@+id/surfaceView"
@@ -26,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
         android:text="No Barcode Detected"
         android:textColor="@android:color/white"
         android:textSize="20sp" />
@@ -36,5 +35,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="ADD CONTENT IN THE MAIL" />
+        android:layout_marginTop="8dp"
+        android:background="@drawable/cornered_primary_bg_fill"
+        android:layout_margin="8dp"
+        android:text="ADD CODE"
+        android:textColor="@color/white" />
 </RelativeLayout>

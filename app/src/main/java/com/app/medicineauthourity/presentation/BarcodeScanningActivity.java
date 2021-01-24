@@ -1,12 +1,8 @@
 package com.app.medicineauthourity.presentation;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
@@ -24,8 +20,12 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 public class BarcodeScanningActivity extends AppCompatActivity {
 
+    public static final String BARCODE = "barcode";
     SurfaceView surfaceView;
     TextView txtBarcodeValue;
     private BarcodeDetector barcodeDetector;
@@ -33,7 +33,6 @@ public class BarcodeScanningActivity extends AppCompatActivity {
     private static final int REQUEST_CAMERA_PERMISSION = 201;
     Button btnAction;
     String intentData = "";
-    boolean isEmail = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +49,11 @@ public class BarcodeScanningActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (intentData.length() > 0) {
-                    if (isEmail) {
-//                        startActivity(new Intent(BarcodeScanningActivity.this, EmailActivity.class).putExtra("email_address", intentData));
-                        Toast.makeText(BarcodeScanningActivity.this, intentData, Toast.LENGTH_SHORT).show();
-                    } else {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(intentData)));
-                    }
+                    Toast.makeText(BarcodeScanningActivity.this, intentData, Toast.LENGTH_SHORT).show();
+                    Intent data = new Intent();
+                    data.putExtra(BARCODE, intentData);
+                    setResult(RESULT_OK, data);
+                    finish();
                 }
             }
         });
@@ -110,23 +108,9 @@ public class BarcodeScanningActivity extends AppCompatActivity {
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
                 if (barcodes.size() != 0) {
-                    txtBarcodeValue.post(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            if (barcodes.valueAt(0).email != null) {
-                                txtBarcodeValue.removeCallbacks(null);
-                                intentData = barcodes.valueAt(0).email.address;
-                                txtBarcodeValue.setText(intentData);
-                                isEmail = true;
-                                btnAction.setText("ADD CONTENT TO THE MAIL");
-                            } else {
-                                isEmail = false;
-                                btnAction.setText("LAUNCH URL");
-                                intentData = barcodes.valueAt(0).displayValue;
-                                txtBarcodeValue.setText(intentData);
-                            }
-                        }
+                    txtBarcodeValue.post(() -> {
+                        intentData = barcodes.valueAt(0).displayValue;
+                        txtBarcodeValue.setText(intentData);
                     });
                 }
             }

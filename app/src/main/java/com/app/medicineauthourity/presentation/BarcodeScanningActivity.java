@@ -26,6 +26,7 @@ import androidx.core.app.ActivityCompat;
 public class BarcodeScanningActivity extends AppCompatActivity {
 
     public static final String BARCODE = "barcode";
+    public static final int BARCODE_REQUEST_CODE = 101;
     SurfaceView surfaceView;
     TextView txtBarcodeValue;
     private BarcodeDetector barcodeDetector;
@@ -101,7 +102,7 @@ public class BarcodeScanningActivity extends AppCompatActivity {
         barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
             @Override
             public void release() {
-                Toast.makeText(getApplicationContext(), "To prevent memory leaks barcode scanner has been stopped", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "To prevent memory leaks barcode scanner has been stopped", Toast.LENGTH_SHORT).show();
             }
 
             @Override

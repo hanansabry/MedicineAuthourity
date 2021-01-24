@@ -17,6 +17,7 @@ import com.app.medicineauthourity.R;
 import com.app.medicineauthourity.data.author.AuthorRepository;
 import com.app.medicineauthourity.presentation.author.AuthorControlActivity;
 import com.app.medicineauthourity.presentation.author.LoginActivity;
+import com.app.medicineauthourity.presentation.user.SearchActivity;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -33,7 +34,7 @@ public class StartActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnStart)
     public void onStartClicked() {
-        startActivity(new Intent(this, BarcodeScanningActivity.class));
+        startActivity(new Intent(this, SearchActivity.class));
     }
 
     @OnClick(R.id.btnLogin)

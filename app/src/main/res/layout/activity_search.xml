@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4.2">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/bg1"
+            android:scaleType="fitXY"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#28000000">
+        </View>
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="50dp"
+            android:background="@null"
+            android:src="@drawable/ic_back_white" />
+
+    </FrameLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6.3"
+        android:layout_marginTop="-40dp"
+        android:background="@drawable/bg_topleft_topright_colored_cornered">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="34sp"
+                android:layout_marginTop="24dp"
+                android:text="Search Medicine"
+                android:textStyle="bold"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="32dp"
+                android:text="Search for medicine by select it or scan bar/QR code"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:gravity="center"/>
+
+            <Spinner
+                android:id="@+id/categoriesSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/border_white_spinner"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"/>
+
+            <Spinner
+                android:id="@+id/medicineSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/border_white_spinner"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"/>
+
+            <Button
+                android:id="@+id/btnSearch"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="30dp"
+                android:background="@drawable/cornered_accent_bg_fill"
+                android:text="Search"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/white"/>
+
+            <LinearLayout
+                android:id="@+id/scanButtonLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/btnScan"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="30dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_qr_code_icon_4"
+                    android:text="Login"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:tint="@color/colorAccent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Scan bar/QR code"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:fontFamily="monospace"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</LinearLayout>

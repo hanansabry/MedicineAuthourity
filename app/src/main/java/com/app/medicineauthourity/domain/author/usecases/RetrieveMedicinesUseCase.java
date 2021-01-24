@@ -19,11 +19,19 @@ public class RetrieveMedicinesUseCase {
         medicineRepository.retrieveMedicines();
     }
 
-    public void executeByCategory(String categoryId) {
-        medicineRepository.retrieveMedicinesByCategory(categoryId);
+    public void executeByCategory(String categoryId, MutableLiveData<List<Medicine>> medicines) {
+        medicineRepository.retrieveMedicinesByCategory(categoryId, medicines);
     }
 
     public void executeByProduction(String productionType, MutableLiveData<List<Medicine>> medicines) {
         medicineRepository.retrieveMedicinesByProduction(productionType, medicines);
+    }
+
+    public void executeByMedicineId(String medicineId, MutableLiveData<Medicine> medicine) {
+        medicineRepository.retrieveMedicinesById(medicineId, medicine);
+    }
+
+    public void executeByCode(String barcode, MutableLiveData<Medicine> medicine) {
+        medicineRepository.retrieveMedicineByCode(barcode, medicine);
     }
 }

@@ -2,6 +2,8 @@ package com.app.medicineauthourity.data.model;
 
 import com.app.medicineauthourity.R;
 
+import java.util.List;
+
 public class Medicine {
 
     public enum Composition {
@@ -20,6 +22,24 @@ public class Medicine {
         Original, License, Generic
     }
 
+    public enum ApproveAttr {
+        Attr1("Active ingredient (Amount)"),
+        Attr2("Pharmaceutical form (Tablets)"),
+        Attr3("Bioequivalence and therapeutic effect"),
+        Attr4("Physical shape (Size-Color)"),
+        Attr5("Quantity and quality of content"),
+        Attr6("Clinical study (Volunteers)");
+
+        private String content;
+        ApproveAttr(String content) {
+            this.content = content;
+        }
+
+        public String getContent() {
+            return content;
+        }
+    }
+
     private String id;
     private String name;
     private String barQRCode;
@@ -29,6 +49,7 @@ public class Medicine {
     private String physiological;
     private String production;
     private boolean approved;
+    private List<String> attrs;
 
     public Medicine(String name, String barQRCode, String categoryName, String composition, String usage, String physiological, String production) {
         this.name = name;
@@ -110,5 +131,13 @@ public class Medicine {
 
     public void setApproved(boolean approved) {
         this.approved = approved;
+    }
+
+    public List<String> getAttrs() {
+        return attrs;
+    }
+
+    public void setAttrs(List<String> attrs) {
+        this.attrs = attrs;
     }
 }

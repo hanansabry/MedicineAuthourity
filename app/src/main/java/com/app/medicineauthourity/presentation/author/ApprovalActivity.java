@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -59,7 +58,7 @@ public class ApprovalActivity extends AppCompatActivity {
     private void initGenericSpinner() {
         ArrayAdapter<String> genericAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item);
         retrieveMedicinesViewModel.retrieveGenericMedicines();
-        retrieveMedicinesViewModel.getGenericMedicines().observe(this, medicines -> {
+        retrieveMedicinesViewModel.getMedicines().observe(this, medicines -> {
             if (medicines == null || medicines.isEmpty()) {
                 Toast.makeText(this, "Empty generic list", Toast.LENGTH_SHORT).show();
             } else {

@@ -28,8 +28,6 @@ import butterknife.OnTextChanged;
 
 public class AddMedicineActivity extends AppCompatActivity {
 
-    private static final int BARCODE_REQUEST_CODE = 101;
-
     @BindView(R.id.textInputMedName)
     TextInputLayout textInputMedName;
     @BindView(R.id.editTextMedName)
@@ -132,7 +130,7 @@ public class AddMedicineActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnScan)
     public void onScanClicked() {
-        startActivityForResult(new Intent(this, BarcodeScanningActivity.class), BARCODE_REQUEST_CODE);
+        startActivityForResult(new Intent(this, BarcodeScanningActivity.class), BarcodeScanningActivity.BARCODE_REQUEST_CODE);
     }
 
     @OnTextChanged(R.id.editTextMedName)
@@ -144,7 +142,7 @@ public class AddMedicineActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            if (requestCode == BARCODE_REQUEST_CODE) {
+            if (requestCode == BarcodeScanningActivity.BARCODE_REQUEST_CODE) {
                 if (data != null) {
                     String barcode = data.getStringExtra(BarcodeScanningActivity.BARCODE);
                     editTextBarCode.setText(barcode);

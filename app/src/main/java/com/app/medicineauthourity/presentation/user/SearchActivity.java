@@ -123,8 +123,7 @@ public class SearchActivity extends AppCompatActivity {
             Toast.makeText(this, "You must select category and medicine", Toast.LENGTH_SHORT).show();
             return;
         }
-        retrieveMedicinesViewModel.retrieveMedicineById(selectedMedicine.getId());
-        retrieveMedicinesViewModel.getMedicine().observe(this, this::goToMedicineReportScreen);
+        goToMedicineReportScreen(selectedMedicine);
     }
 
     @OnClick({R.id.scanButtonLayout, R.id.btnScan})

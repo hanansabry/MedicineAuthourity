@@ -27,7 +27,7 @@ public class RegisterViewModel extends ViewModel {
 
     public void register(String username, String mail, String mobile, String password, String confirmPassword) {
         if (validate(username, mail, mobile, password, confirmPassword)) {
-            Author author = new Author(username, mail, mobile, password);
+            Author author = new Author(username, password, mail, mobile);
             registerUseCase.execute(author, success);
         }
     }

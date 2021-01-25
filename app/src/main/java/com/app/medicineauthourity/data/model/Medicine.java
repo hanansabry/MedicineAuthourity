@@ -1,7 +1,6 @@
 package com.app.medicineauthourity.data.model;
 
-import com.app.medicineauthourity.R;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class Medicine {
@@ -44,6 +43,7 @@ public class Medicine {
     private String name;
     private String barQRCode;
     private String categoryName;
+    private String categoryId;
     private String composition;
     private String usage;
     private String physiological;
@@ -51,14 +51,20 @@ public class Medicine {
     private boolean approved;
     private List<String> attrs;
 
-    public Medicine(String name, String barQRCode, String categoryName, String composition, String usage, String physiological, String production) {
+    public Medicine() {
+    }
+
+    public Medicine(String name, String barQRCode, String categoryId, String categoryName,
+                    String composition, String usage, String physiological, String production, boolean status) {
         this.name = name;
         this.barQRCode = barQRCode;
+        this.categoryId = categoryId;
         this.categoryName = categoryName;
         this.composition = composition;
         this.usage = usage;
         this.physiological = physiological;
         this.production = production;
+        this.approved = status;
     }
 
     public String getId() {
@@ -83,6 +89,14 @@ public class Medicine {
 
     public void setBarQRCode(String barQRCode) {
         this.barQRCode = barQRCode;
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getCategoryName() {
@@ -134,7 +148,19 @@ public class Medicine {
     }
 
     public List<String> getAttrs() {
-        return attrs;
+        if (Production.valueOf(production) == Production.License ||
+                Production.valueOf(production) == Production.Original) {
+            ArrayList<String> allAttrs = new ArrayList<>();
+            allAttrs.add(ApproveAttr.Attr1.getContent());
+            allAttrs.add(ApproveAttr.Attr2.getContent());
+            allAttrs.add(ApproveAttr.Attr3.getContent());
+            allAttrs.add(ApproveAttr.Attr4.getContent());
+            allAttrs.add(ApproveAttr.Attr5.getContent());
+            allAttrs.add(ApproveAttr.Attr6.getContent());
+            return allAttrs;
+        } else {
+            return attrs;
+        }
     }
 
     public void setAttrs(List<String> attrs) {

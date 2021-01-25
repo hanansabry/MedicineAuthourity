@@ -2,6 +2,7 @@ package com.app.medicineauthourity.data.model;
 
 public class Author {
 
+    private String id;
     private String userName;
     private String password;
     private String email;
@@ -12,6 +13,14 @@ public class Author {
         this.password = password;
         this.email = email;
         this.phone = phone;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUserName() {

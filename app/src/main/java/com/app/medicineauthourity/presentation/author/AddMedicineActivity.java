@@ -2,6 +2,8 @@ package com.app.medicineauthourity.presentation.author;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -17,6 +19,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,6 +51,8 @@ public class AddMedicineActivity extends AppCompatActivity {
     RadioGroup productionRadioGroup;
     private AddMedicineViewModel addMedicineViewModel;
     private RetrieveCategoriesViewModel retrieveCategoriesViewModel;
+    private List<Category> categories;
+    private Category selectedCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +88,7 @@ public class AddMedicineActivity extends AppCompatActivity {
             if (categories == null || categories.isEmpty()) {
                 Toast.makeText(this, "Empty categories list", Toast.LENGTH_SHORT).show();
             } else {
+                this.categories = categories;
                 ArrayList<String> categoriesNames = new ArrayList<>();
                 categoriesNames.add("Select category");
                 for (Category category : categories) {
@@ -90,6 +96,20 @@ public class AddMedicineActivity extends AppCompatActivity {
                 }
                 categoriesAdapter.addAll(categoriesNames);
                 categoriesSpinner.setAdapter(categoriesAdapter);
+            }
+        });
+
+        categoriesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position > 0) {
+                    selectedCategory = categories.get(position - 1);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
     }
@@ -100,6 +120,7 @@ public class AddMedicineActivity extends AppCompatActivity {
             Toast.makeText(this, "You must select disease category", Toast.LENGTH_SHORT).show();
             return;
         }
+
         String medName = editTextMedName.getText().toString().trim();
         String barQRCode = editTextBarCode.getText().toString().trim();
         String catName = (String) categoriesSpinner.getSelectedItem() ;
@@ -120,7 +141,10 @@ public class AddMedicineActivity extends AppCompatActivity {
                 Medicine.Production.Original.name() : productionRadioGroup.getCheckedRadioButtonId() == R.id.licenseRadioValue ?
                 Medicine.Production.License.name() : productionRadioGroup.getCheckedRadioButtonId() == R.id.genericRadioValue ?
                 Medicine.Production.Generic.name() : null;
-        addMedicineViewModel.addMedicine(medName, barQRCode, catName, composition, usage, physiological, production);
+
+        boolean status = productionRadioGroup.getCheckedRadioButtonId() == R.id.originalRadioValue
+                || productionRadioGroup.getCheckedRadioButtonId() == R.id.licenseRadioValue;
+        addMedicineViewModel.addMedicine(medName, barQRCode, selectedCategory.getId(), catName, composition, usage, physiological, production, status);
     }
 
     @OnClick(R.id.btnBack)

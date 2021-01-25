@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.app.medicineauthourity.Injection;
 import com.app.medicineauthourity.R;
 import com.app.medicineauthourity.presentation.StartActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class AuthorControlActivity extends AppCompatActivity {
 
@@ -47,9 +49,7 @@ public class AuthorControlActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnLogout)
     public void onLogoutClicked() {
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putBoolean(LoginActivity.LOGGED_PREF, false);
-        editor.apply();
+        FirebaseAuth.getInstance().signOut();
         Intent i = new Intent(this, StartActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);

@@ -26,13 +26,6 @@ import java.util.List;
 
 public class ApprovalActivity extends AppCompatActivity {
 
-    private static final String ATTR1 = "attr1";
-    private static final String ATTR2 = "attr2";
-    private static final String ATTR3 = "attr3";
-    private static final String ATTR4 = "attr4";
-    private static final String ATTR5 = "attr5";
-    private static final String ATTR6 = "attr6";
-
     @BindView(R.id.genericSpinner)
     Spinner genericSpinner;
 
@@ -107,6 +100,7 @@ public class ApprovalActivity extends AppCompatActivity {
     }
 
     private void updateMedicineApprovedStatus() {
+        selectedGenericMedicine.setAttrs(checkedAttrs);
         addMedicineViewModel.updateApprovedStatus(selectedGenericMedicine);
         ProgressDialog pd = new ProgressDialog(this);
         pd.setMessage("Loading");
@@ -126,54 +120,54 @@ public class ApprovalActivity extends AppCompatActivity {
     @OnCheckedChanged(R.id.attr1Checkbox)
     public void onAttr1Checked(boolean checked) {
         if (checked) {
-            checkedAttrs.add(ATTR1);
+            checkedAttrs.add(Medicine.ApproveAttr.Attr1.getContent());
         } else {
-            checkedAttrs.remove(ATTR1);
+            checkedAttrs.remove(Medicine.ApproveAttr.Attr1.getContent());
         }
     }
 
     @OnCheckedChanged(R.id.attr2Checkbox)
     public void onAttr2Checked(boolean checked) {
         if (checked) {
-            checkedAttrs.add(ATTR2);
+            checkedAttrs.add(Medicine.ApproveAttr.Attr2.getContent());
         } else {
-            checkedAttrs.remove(ATTR2);
+            checkedAttrs.remove(Medicine.ApproveAttr.Attr2.getContent());
         }
     }
 
     @OnCheckedChanged(R.id.attr3Checkbox)
     public void onAttr3Checked(boolean checked) {
         if (checked) {
-            checkedAttrs.add(ATTR3);
+            checkedAttrs.add(Medicine.ApproveAttr.Attr3.getContent());
         } else {
-            checkedAttrs.remove(ATTR3);
+            checkedAttrs.remove(Medicine.ApproveAttr.Attr3.getContent());
         }
     }
 
     @OnCheckedChanged(R.id.attr4Checkbox)
     public void onAttr4Checked(boolean checked) {
         if (checked) {
-            checkedAttrs.add(ATTR4);
+            checkedAttrs.add(Medicine.ApproveAttr.Attr4.getContent());
         } else {
-            checkedAttrs.remove(ATTR4);
+            checkedAttrs.remove(Medicine.ApproveAttr.Attr4.getContent());
         }
     }
 
     @OnCheckedChanged(R.id.attr5Checkbox)
     public void onAttr5Checked(boolean checked) {
         if (checked) {
-            checkedAttrs.add(ATTR5);
+            checkedAttrs.add(Medicine.ApproveAttr.Attr5.getContent());
         } else {
-            checkedAttrs.remove(ATTR5);
+            checkedAttrs.remove(Medicine.ApproveAttr.Attr5.getContent());
         }
     }
 
     @OnCheckedChanged(R.id.attr6Checkbox)
     public void onAttr6Checked(boolean checked) {
         if (checked) {
-            checkedAttrs.add(ATTR6);
+            checkedAttrs.add(Medicine.ApproveAttr.Attr6.getContent());
         } else {
-            checkedAttrs.remove(ATTR6);
+            checkedAttrs.remove(Medicine.ApproveAttr.Attr6.getContent());
         }
     }
 

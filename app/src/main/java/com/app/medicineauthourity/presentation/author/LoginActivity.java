@@ -35,9 +35,6 @@ public class LoginActivity extends AppCompatActivity {
     TextInputEditText editTextPassword;
 
     private LoginViewModel loginViewModel;
-    private SharedPreferences sharedPref;
-
-    public static final String LOGGED_PREF = "logged_pref";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        sharedPref = Injection.getSharedPreferences(this);
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel.class);
         loginViewModel.getUsernameError().observe(this, error -> {
             textInputMail.setError(error);
@@ -55,7 +51,6 @@ public class LoginActivity extends AppCompatActivity {
         });
         loginViewModel.isLoginSucceeded().observe(this, isSuccess -> {
             if (isSuccess) {
-                storeLoginStatus();
                 startActivity(new Intent(LoginActivity.this, AuthorControlActivity.class));
             } else {
                 Toast.makeText(LoginActivity.this, "Incorrect username or password", Toast.LENGTH_SHORT).show();
@@ -90,9 +85,4 @@ public class LoginActivity extends AppCompatActivity {
         onBackPressed();
     }
 
-    private void storeLoginStatus() {
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putBoolean(LOGGED_PREF, true);
-        editor.apply();
-    }
 }

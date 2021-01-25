@@ -18,6 +18,8 @@ import com.app.medicineauthourity.data.author.AuthorRepository;
 import com.app.medicineauthourity.presentation.author.AuthorControlActivity;
 import com.app.medicineauthourity.presentation.author.LoginActivity;
 import com.app.medicineauthourity.presentation.user.SearchActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -39,8 +41,7 @@ public class StartActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnLogin)
     public void onLoginClicked() {
-        boolean isLogged = sharedPref.getBoolean(LoginActivity.LOGGED_PREF, false);
-        if (!isLogged) {
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
             startActivity(new Intent(this, LoginActivity.class));
         } else {
             startActivity(new Intent(this, AuthorControlActivity.class));

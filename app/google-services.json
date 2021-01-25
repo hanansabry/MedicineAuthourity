@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "786862606532",
+    "firebase_url": "https://medicineauthority-ec344-default-rtdb.firebaseio.com",
+    "project_id": "medicineauthority-ec344",
+    "storage_bucket": "medicineauthority-ec344.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:786862606532:android:cdeaa72bcfd48bc6c7a191",
+        "android_client_info": {
+          "package_name": "com.app.medicineauthourity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "786862606532-60gavgtn00t92msou035nk5c4026hd76.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.medicineauthourity",
+            "certificate_hash": "51247baa05eff6421afb67f99b356fa2ad164748"
+          }
+        },
+        {
+          "client_id": "786862606532-2dgneefoup7jrcs1b63k5fgd3l0u10ar.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCPnwAVUxAKomBL4igf5WY-P0UpitWbG0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "786862606532-2dgneefoup7jrcs1b63k5fgd3l0u10ar.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

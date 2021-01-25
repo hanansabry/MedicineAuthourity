@@ -19,10 +19,11 @@ public class AddMedicineViewModel extends ViewModel {
         addMedicineUseCase = Injection.getMedicineUseCase();
     }
 
-    public void addMedicine(String name, String barQRCode, String categoryName, String composition, String usage, String physiological, String production) {
+    public void addMedicine(String name, String barQRCode, String catId, String categoryName,
+                            String composition, String usage, String physiological, String production, boolean status) {
         if (valid(name, barQRCode, categoryName, composition, usage, physiological, production)) {
-            Medicine newMedicine = new Medicine(name, barQRCode, categoryName, composition,
-                    usage, physiological, production);
+            Medicine newMedicine = new Medicine(name, barQRCode, catId, categoryName, composition,
+                    usage, physiological, production, status);
             addMedicineUseCase.execute(newMedicine, success);
         }
     }

@@ -59,6 +59,7 @@ public class AddCategoryActivity extends AppCompatActivity {
         String categoryName = Objects.requireNonNull(editTextCatName.getText()).toString().trim();
         String desc = Objects.requireNonNull(editTextDesc.getText()).toString().trim();
         addCategoryViewModel.addCategory(categoryName, desc);
+
     }
 
     @OnTextChanged(R.id.editTextCatName)

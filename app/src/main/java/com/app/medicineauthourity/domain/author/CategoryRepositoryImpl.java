@@ -2,29 +2,58 @@ package com.app.medicineauthourity.domain.author;
 
 import com.app.medicineauthourity.data.author.CategoryRepository;
 import com.app.medicineauthourity.data.model.Category;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 public class CategoryRepositoryImpl implements CategoryRepository {
+
+    private final DatabaseReference mDatabase;
+
+    public CategoryRepositoryImpl() {
+        mDatabase = FirebaseDatabase.getInstance().getReference(Category.class.getSimpleName());
+    }
+
     @Override
     public void addCategory(Category category, MutableLiveData<Boolean> success) {
-        if (category.getName().equals("cat1")) {
-            success.setValue(true);
-        } else {
-            success.setValue(false);
-        }
+        mDatabase.push().setValue(category).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                success.setValue(task.isSuccessful());
+            }
+        });
     }
 
     @Override
     public void retrieveCategories(MutableLiveData<List<Category>> categories) {
-        List<Category> categoriesList = new ArrayList<>();
-        categoriesList.add(new Category("Category 2", "desc1"));
-        categoriesList.add(new Category("Category 2", "desc2"));
-        categoriesList.add(new Category("Category 3", "desc3"));
-        categoriesList.add(new Category("Category 4", "desc4"));
-        categories.setValue(categoriesList);
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<Category> retrievedCategories = new ArrayList<>();
+                Iterable<DataSnapshot> dataSnapshots = dataSnapshot.getChildren();
+                for (DataSnapshot categorySnapshot : dataSnapshots) {
+                    String id = categorySnapshot.getKey();
+                    Category category = categorySnapshot.getValue(Category.class);
+                    category.setId(id);
+                    retrievedCategories.add(category);
+                }
+                categories.setValue(retrievedCategories);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                categories.setValue(null);
+            }
+        });
     }
 }

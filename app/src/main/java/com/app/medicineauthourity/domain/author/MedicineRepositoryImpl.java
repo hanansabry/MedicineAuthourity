@@ -14,6 +14,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -64,10 +65,6 @@ public class MedicineRepositoryImpl implements MedicineRepository {
     }
 
     @Override
-    public void retrieveMedicines() {
-    }
-
-    @Override
     public void retrieveMedicinesById(String medicineId, MutableLiveData<Medicine> medicine) {
         mDatabase.getReference(Medicine.class.getSimpleName()).child(medicineId).addValueEventListener(new ValueEventListener() {
             @Override
@@ -105,6 +102,29 @@ public class MedicineRepositoryImpl implements MedicineRepository {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 medicine.setValue(null);
+            }
+        });
+    }
+
+    @Override
+    public void retrieveAllMedicines(MutableLiveData<List<Medicine>> medicines) {
+        mDatabase.getReference(Medicine.class.getSimpleName()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<Medicine> retrievedMedicines = new ArrayList<>();
+                Iterable<DataSnapshot> dataSnapshots = dataSnapshot.getChildren();
+                for (DataSnapshot medicineSnapshot : dataSnapshots) {
+                    String id = medicineSnapshot.getKey();
+                    Medicine medicine = medicineSnapshot.getValue(Medicine.class);
+                    medicine.setId(id);
+                    retrievedMedicines.add(medicine);
+                }
+                medicines.setValue(retrievedMedicines);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                medicines.setValue(null);
             }
         });
     }
@@ -157,5 +177,100 @@ public class MedicineRepositoryImpl implements MedicineRepository {
                 medicines.setValue(null);
             }
         });
+    }
+
+    @Override
+    public void addConflictMedicinesForMedicine(Medicine medicine, String value, MutableLiveData<Boolean> success) {
+        DatabaseReference rootRef = mDatabase.getReference(Medicine.class.getSimpleName())
+                .child(medicine.getId())
+                .child("conflict_medicines");
+        rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.getValue() == null) {
+                            addNewValueInList("0", value, rootRef, success);
+                        } else {
+                            ArrayList<String> currentList = (ArrayList<String>) dataSnapshot.getValue();
+                            addNewValueInList(currentList.size()+"", value, rootRef, success);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        success.setValue(false);
+                    }
+                });
+    }
+
+    private void addNewValueInList(String index, String value, DatabaseReference rootRef, MutableLiveData<Boolean> success) {
+        Map<String, Object> map = new HashMap<>();
+        map.put(index, value);
+        rootRef.updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                success.setValue(task.isSuccessful());
+            }
+        });
+    }
+
+    @Override
+    public void addContradictoryDiseasesForMedicine(Medicine medicine, String value, MutableLiveData<Boolean> success) {
+        DatabaseReference rootRef = mDatabase.getReference(Medicine.class.getSimpleName())
+                .child(medicine.getId())
+                .child("contradictory_diseases");
+        rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getValue() == null) {
+                    addNewValueInList("0", value, rootRef, success);
+                } else {
+                    ArrayList<String> currentList = (ArrayList<String>) dataSnapshot.getValue();
+                    addNewValueInList(currentList.size()+"", value, rootRef, success);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                success.setValue(false);
+            }
+        });
+    }
+
+    @Override
+    public void retrieveConflictMedicinesForMedicine(Medicine medicine,MutableLiveData<List<String>> conflictMedicinesLiveData) {
+        mDatabase.getReference(Medicine.class.getSimpleName())
+                .child(medicine.getId())
+                .child("conflict_medicines")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        ArrayList<String> conflictMedicines = (ArrayList<String>) dataSnapshot.getValue();
+                        conflictMedicinesLiveData.setValue(conflictMedicines);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        conflictMedicinesLiveData.setValue(null);
+                    }
+                });
+    }
+
+    @Override
+    public void retrieveContradictoryDiseasesForMedicine(Medicine medicine, MutableLiveData<List<String>> ContradictoryDiseasesLiveData) {
+        mDatabase.getReference(Medicine.class.getSimpleName())
+                .child(medicine.getId())
+                .child("contradictory_diseases")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        ArrayList<String> ContradictoryDiseases = (ArrayList<String>) dataSnapshot.getValue();
+                        ContradictoryDiseasesLiveData.setValue(ContradictoryDiseases);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        ContradictoryDiseasesLiveData.setValue(null);
+                    }
+                });
     }
 }

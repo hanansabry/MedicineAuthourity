@@ -1,6 +1,5 @@
 package com.app.medicineauthourity.presentation.user;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,18 +8,17 @@ import android.widget.TextView;
 import com.app.medicineauthourity.R;
 
 import java.util.List;
-import java.util.zip.Inflater;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ApprovedAttrAdapter extends RecyclerView.Adapter<ApprovedAttrAdapter.AttrViewHolder> {
+public class StringsListAdapter extends RecyclerView.Adapter<StringsListAdapter.AttrViewHolder> {
 
     private List<String> approvedAttrList;
 
-    public ApprovedAttrAdapter(List<String> approvedAttrList) {
+    public StringsListAdapter(List<String> approvedAttrList) {
         this.approvedAttrList = approvedAttrList;
     }
 

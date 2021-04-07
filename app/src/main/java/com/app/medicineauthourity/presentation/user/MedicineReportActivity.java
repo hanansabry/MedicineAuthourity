@@ -69,7 +69,7 @@ public class MedicineReportActivity extends AppCompatActivity {
     }
 
     private void setupAttrListRecyclerView(Medicine medicine) {
-        ApprovedAttrAdapter adapter = new ApprovedAttrAdapter(medicine.getAttrs());
+        StringsListAdapter adapter = new StringsListAdapter(medicine.getAttrs());
         attrsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         attrsRecyclerView.setAdapter(adapter);
     }

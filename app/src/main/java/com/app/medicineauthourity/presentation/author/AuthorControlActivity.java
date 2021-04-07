@@ -37,6 +37,11 @@ public class AuthorControlActivity extends AppCompatActivity {
         startActivity(new Intent(this, AddMedicineActivity.class));
     }
 
+    @OnClick(R.id.selectMedicineView)
+    public void onSelecteMedicineView() {
+        startActivity(new Intent(this, SelectMedicineActivity.class));
+    }
+
     @OnClick(R.id.approvalView)
     public void onApprovalClicked() {
         startActivity(new Intent(this, ApprovalActivity.class));

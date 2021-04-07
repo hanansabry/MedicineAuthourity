@@ -1,202 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
-    tools:context=".presentation.user.MedicineReportActivity">
-
-    <ImageButton
-        android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="16dp"
-        android:background="@null"
-        android:src="@drawable/ic_back_white"
-        android:tint="@color/black" />
-
-    <TextView
-        android:id="@+id/medicineNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Medicine Name"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:fontFamily="serif-monospace"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Medicine properties"
-        android:padding="16dp"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:background="@drawable/cornered_accent_bg_fill"/>
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="vertical"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp">
+        tools:context=".presentation.user.MedicineReportActivity">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="16dp"
+            android:background="@null"
+            android:src="@drawable/ic_back_white"
+            android:tint="@color/black" />
+
+        <TextView
+            android:id="@+id/medicineNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medicine Name"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:fontFamily="serif-monospace"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Medicine properties"
+            android:padding="16dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:background="@drawable/cornered_accent_bg_fill"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="3"
-            android:padding="8dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Category"
-                android:textColor="@color/colorPrimaryDark"/>
-            <TextView
-                android:id="@+id/categoryNameTextView"
-                android:layout_width="0dp"
-                android:layout_weight="2"
+                android:weightSum="3"
+                android:padding="8dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Category"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:id="@+id/categoryNameTextView"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:text="Category Name"
+                    android:textColor="@color/text_gray"
+                    android:gravity="start"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Category Name"
-                android:textColor="@color/text_gray"
-                android:gravity="start"/>
+                android:weightSum="3"
+                android:padding="8dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Composition"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:id="@+id/compositionValueTextView"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:text="Composition value"
+                    android:textColor="@color/text_gray"
+                    android:gravity="start"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3"
+                android:padding="8dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Usage"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:id="@+id/usageValueTextView"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:text="Usage value"
+                    android:textColor="@color/text_gray"
+                    android:gravity="start"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3"
+                android:padding="8dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Physilogical"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:id="@+id/physilogicalValueTextView"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:text="physilogical value"
+                    android:textColor="@color/text_gray"
+                    android:gravity="start"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3"
+                android:padding="8dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Production"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:id="@+id/productionValueTextView"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:text="production value"
+                    android:textColor="@color/text_gray"
+                    android:gravity="start"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="3"
+                android:padding="8dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Status"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <TextView
+                    android:id="@+id/statusTextView"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:text="approved"
+                    android:textColor="@color/text_gray"
+                    android:gravity="start"/>
+            </LinearLayout>
+
         </LinearLayout>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/approvalAttrsTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="3"
-            android:padding="8dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Composition"
-                android:textColor="@color/colorPrimaryDark"/>
-            <TextView
-                android:id="@+id/compositionValueTextView"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"
-                android:text="Composition value"
-                android:textColor="@color/text_gray"
-                android:gravity="start"/>
-        </LinearLayout>
+            android:text="Approval attributes"
+            android:padding="16dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:background="@drawable/cornered_accent_bg_fill"
+            android:visibility="gone"/>
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/attrsRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="3"
-            android:padding="8dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Usage"
-                android:textColor="@color/colorPrimaryDark"/>
-            <TextView
-                android:id="@+id/usageValueTextView"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"
-                android:text="Usage value"
-                android:textColor="@color/text_gray"
-                android:gravity="start"/>
-        </LinearLayout>
+            android:layout_margin="8dp"
+            tools:listitem="@layout/attr_layout"/>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/conflictTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="3"
-            android:padding="8dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Physilogical"
-                android:textColor="@color/colorPrimaryDark"/>
-            <TextView
-                android:id="@+id/physilogicalValueTextView"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"
-                android:text="physilogical value"
-                android:textColor="@color/text_gray"
-                android:gravity="start"/>
-        </LinearLayout>
+            android:text="Conflict medicines"
+            android:padding="16dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:background="@drawable/cornered_accent_bg_fill"
+            android:visibility="gone"/>
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/conflictRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="3"
-            android:padding="8dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Production"
-                android:textColor="@color/colorPrimaryDark"/>
-            <TextView
-                android:id="@+id/productionValueTextView"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"
-                android:text="production value"
-                android:textColor="@color/text_gray"
-                android:gravity="start"/>
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            tools:listitem="@layout/attr_layout"/>
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/contradictoryTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="3"
-            android:padding="8dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Status"
-                android:textColor="@color/colorPrimaryDark"/>
-            <TextView
-                android:id="@+id/statusTextView"
-                android:layout_width="0dp"
-                android:layout_weight="2"
-                android:layout_height="wrap_content"
-                android:text="approved"
-                android:textColor="@color/text_gray"
-                android:gravity="start"/>
-        </LinearLayout>
+            android:text="Contradictory diseases"
+            android:padding="16dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:background="@drawable/cornered_accent_bg_fill"
+            android:visibility="gone"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/contradictoryRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            tools:listitem="@layout/attr_layout"/>
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Approval attributes"
-        android:padding="16dp"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:background="@drawable/cornered_accent_bg_fill"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/attrsRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        tools:listitem="@layout/attr_layout"/>
-
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

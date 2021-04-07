@@ -131,7 +131,7 @@ public class MedicineRepositoryImpl implements MedicineRepository {
 
     @Override
     public void retrieveMedicinesByCategory(String categoryId, MutableLiveData<List<Medicine>> medicines) {
-        mDatabase.getReference(Medicine.class.getSimpleName()).addValueEventListener(new ValueEventListener() {
+        mDatabase.getReference(Medicine.class.getSimpleName()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<Medicine> retrievedMedicines = new ArrayList<>();

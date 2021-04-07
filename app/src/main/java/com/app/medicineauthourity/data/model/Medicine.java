@@ -50,6 +50,8 @@ public class Medicine {
     private String production;
     private boolean approved;
     private List<String> attrs;
+    private List<String> conflict_medicines;
+    private List<String> contradictory_diseases;
 
     public Medicine() {
     }
@@ -165,5 +167,21 @@ public class Medicine {
 
     public void setAttrs(List<String> attrs) {
         this.attrs = attrs;
+    }
+
+    public List<String> getConflict_medicines() {
+        return conflict_medicines;
+    }
+
+    public void setConflict_medicines(List<String> conflict_medicines) {
+        this.conflict_medicines = conflict_medicines;
+    }
+
+    public List<String> getContradictory_diseases() {
+        return contradictory_diseases;
+    }
+
+    public void setContradictory_diseases(List<String> contradictory_diseases) {
+        this.contradictory_diseases = contradictory_diseases;
     }
 }

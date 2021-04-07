@@ -64,6 +64,7 @@ public class SearchActivity extends AppCompatActivity {
                 for (Category category : categories) {
                     categoriesNames.add(category.getName());
                 }
+                categoriesAdapter.clear();
                 categoriesAdapter.addAll(categoriesNames);
                 categoriesSpinner.setAdapter(categoriesAdapter);
             }
@@ -97,6 +98,7 @@ public class SearchActivity extends AppCompatActivity {
                 for (Medicine medicine : medicines) {
                     medicinesNames.add(medicine.getName());
                 }
+                medicinesAdapter.clear();
                 medicinesAdapter.addAll(medicinesNames);
                 medicineSpinner.setAdapter(medicinesAdapter);
             }
